@@ -54,5 +54,6 @@ switch (command) {
             // code adpated from read.js
         });
         break;
-    
+        default:
+            console.log("Invalid Command");
 };
