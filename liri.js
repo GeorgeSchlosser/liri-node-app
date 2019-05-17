@@ -17,6 +17,7 @@ var spotify = new Spotify(keys.spotify);
 // PACKAGE FUNCTIONS
 // ================================================================================
 
+
 // CLI FUNCTIONS
 // ================================================================================
 // take in command line arguments
@@ -35,7 +36,14 @@ switch (command) {
         console.log("look up concerts");
         break;
     case "spotify-this-song":
-        console.log("search a song");
+        // console.log("search a song");
+        spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+            if (err) {
+              return console.log('Error occurred: ' + err);
+            }
+           
+          console.log(data); 
+        });
         break;
     case "movie-this":
         console.log("search a movie");
@@ -54,6 +62,6 @@ switch (command) {
             // code adpated from read.js
         });
         break;
-        default:
-            console.log("Invalid Command");
+    default:
+        console.log("Invalid Command");
 };
