@@ -23,11 +23,11 @@ var spotify = new Spotify(keys.spotify);
 // ================================================================================
 // take in first command line argument
 var commandInput = process.argv.slice(2, 3);
-console.log(commandInput);
+// console.log(commandInput);
 
 // variable to take value w/n commandInput out of its array
 var command = commandInput[0];
-console.log(command);
+// console.log(command);
 
 // empty variable to hold artist/song/movie to search
 // var searchItem = "";
