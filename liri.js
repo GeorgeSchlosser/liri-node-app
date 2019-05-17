@@ -21,13 +21,25 @@ var spotify = new Spotify(keys.spotify);
 // CLI FUNCTIONS
 // ================================================================================
 // take in command line arguments
-var inputString = process.argv;
+// var inputString = process.argv;
 
 // specify which functions to execute
-var command = inputString[2];
+// var command = inputString[2];
+var commandInput = process.argv.slice(2, 3);
+console.log(commandInput);
+
+// variable to take value w/n commandInput out of its array
+var command = commandInput[0];
+console.log(command);
 
 // empty variable to hold artist/song/movie to search
-var searchItem = "";
+// var searchItem = "";
+
+// variable containing searchterms
+var commandArgs = process.argv.slice(3);
+console.log(commandArgs);
+
+
 // use levelTwoOmdbInteractive.js loop method?
 
 // tell liri what to do
