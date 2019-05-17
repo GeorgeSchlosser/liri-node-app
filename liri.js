@@ -26,11 +26,11 @@ var spotify = new Spotify(keys.spotify);
 // specify which functions to execute
 // var command = inputString[2];
 var commandInput = process.argv.slice(2, 3);
-console.log(commandInput);
+// console.log(commandInput);
 
 // variable to take value w/n commandInput out of its array
 var command = commandInput[0];
-console.log(command);
+// console.log(command);
 
 // empty variable to hold artist/song/movie to search
 // var searchItem = "";
@@ -39,6 +39,30 @@ console.log(command);
 var commandArgs = process.argv.slice(3);
 console.log(commandArgs);
 
+// take values w/n commandArgs out of its array
+// var args = function () {
+//     for (let i = 0; i < commandArgs.length; i++) {
+//         console.log(commandArgs[i])
+//     }
+// };
+// console.log(args);
+
+// empty variable for holding arguments
+var args = "";
+
+// loop through all words in commandArgs & concatinate into a searchable string
+for (var i = 0; i < commandArgs.length; i++) {
+
+    if (i > 0 && i < commandArgs.length) {
+      args = args + " " + commandArgs[i];
+    }
+    else {
+      args += commandArgs[i];
+  
+    }
+
+}
+console.log(args);
 
 // use levelTwoOmdbInteractive.js loop method?
 
