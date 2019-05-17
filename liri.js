@@ -76,7 +76,15 @@ switch (command) {
         .then((resp) => {
             var resp = resp.tracks.items[0]; //unpacked here
             // do the things here
-            console.log(resp);
+            // console.log(resp);
+            var artistsResp = resp.artists[0].name;
+            console.log("Preformed by " + artistsResp);
+            var songResp = resp.name;
+            console.log("'" + songResp + "'");
+            var urlResp = resp.external_urls.spotify;
+            console.log("Listen to the song HERE: " + urlResp);
+            var albumResp = resp.album.name;
+            console.log("Off of the album " + albumResp);
         })
         .catch((err) => {
             console.log("Liri can't find that song!");
