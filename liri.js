@@ -13,7 +13,7 @@ var fs = require("fs");
 // access your keys information
 var spotify = new Spotify(keys.spotify);
 //checking to see files are communicating
-console.log(spotify); 
+// console.log(spotify); 
 
 // PACKAGE FUNCTIONS
 // ================================================================================
@@ -21,11 +21,7 @@ console.log(spotify);
 
 // CLI FUNCTIONS
 // ================================================================================
-// take in command line arguments
-// var inputString = process.argv;
-
-// specify which functions to execute
-// var command = inputString[2];
+// take in first command line argument
 var commandInput = process.argv.slice(2, 3);
 console.log(commandInput);
 
@@ -36,22 +32,15 @@ console.log(command);
 // empty variable to hold artist/song/movie to search
 // var searchItem = "";
 
-// variable containing searchterms
+// variable containing arguments for searchterms
 var commandArgs = process.argv.slice(3);
-console.log(commandArgs);
+// console.log(commandArgs);
 
-// take values w/n commandArgs out of its array
-// var args = function () {
-//     for (let i = 0; i < commandArgs.length; i++) {
-//         console.log(commandArgs[i])
-//     }
-// };
-// console.log(args);
 
 // empty variable for holding arguments
 var args = "";
 
-// loop through all words in commandArgs & concatinate into a searchable string
+// loop through all words in commandArgs & concatinate into a searchable string w/ spaces
 for (var i = 0; i < commandArgs.length; i++) {
 
     if (i > 0 && i < commandArgs.length) {
@@ -63,7 +52,7 @@ for (var i = 0; i < commandArgs.length; i++) {
     }
 
 }
-console.log(args);
+// console.log(args);
 
 // use levelTwoOmdbInteractive.js loop method?
 
@@ -73,6 +62,7 @@ switch (command) {
         console.log("look up concerts");
         break;
     case "spotify-this-song":
+        // this way was giving me problems, saving to investigate later
         // console.log("search a song");
         // spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
         //     if (err) {
