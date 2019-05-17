@@ -12,7 +12,8 @@ var keys = require("./keys.js");
 var fs = require("fs");
 // access your keys information
 var spotify = new Spotify(keys.spotify);
-// console.log(spotify); checking to see files are communicating
+//checking to see files are communicating
+console.log(spotify); 
 
 // PACKAGE FUNCTIONS
 // ================================================================================
@@ -26,11 +27,11 @@ var spotify = new Spotify(keys.spotify);
 // specify which functions to execute
 // var command = inputString[2];
 var commandInput = process.argv.slice(2, 3);
-// console.log(commandInput);
+console.log(commandInput);
 
 // variable to take value w/n commandInput out of its array
 var command = commandInput[0];
-// console.log(command);
+console.log(command);
 
 // empty variable to hold artist/song/movie to search
 // var searchItem = "";
@@ -73,12 +74,22 @@ switch (command) {
         break;
     case "spotify-this-song":
         // console.log("search a song");
-        spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-            if (err) {
-              return console.log('Error occurred: ' + err);
-            }
+        // spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+        //     if (err) {
+        //       return console.log('Error occurred: ' + err);
+        //     }
            
-          console.log(data); 
+        //   console.log(data.items); 
+        // });
+        spotify
+        .search({ type: 'track', query: args, limit: 1})
+        .then((resp) => {
+            var resp = resp.tracks.items[0]; //unpacked here
+            // do the things here
+            console.log(resp);
+        })
+        .catch((err) => {
+            console.log("Liri can't find that song!");
         });
         break;
     case "movie-this":
