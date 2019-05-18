@@ -97,12 +97,17 @@ switch (command) {
             var albumResp = resp.album.name;
             console.log("Off of the album, " + albumResp);
             })
-        .catch((err) => {
+            .catch((err) => {
             console.log("I havent heard of that one :(");
-        });
+            });
         break;
     case "movie-this":
         // console.log("search a movie");
+         // defaults to Mr. Nobody
+        if (args === "") {
+            var args = "mr nobody"
+        };
+        
         axios.get("http://www.omdbapi.com/?t="+args+"&y=&plot=short&apikey=trilogy").then(
         function(response) {
             // log data to ensure axios is working
