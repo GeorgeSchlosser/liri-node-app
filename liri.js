@@ -40,6 +40,11 @@ var commandArgs = process.argv.slice(3);
 // empty variable for holding arguments
 var args = "";
 
+// song search defaults to "The Sign"
+// if (command === "spotif-this-song" && args === "") {
+//     let args = "the sign"
+// };
+
 // loop through all words in commandArgs & concatinate into a searchable string w/ spaces
 for (var i = 0; i < commandArgs.length; i++) {
 
@@ -54,7 +59,6 @@ for (var i = 0; i < commandArgs.length; i++) {
 }
 // console.log(args);
 
-// use levelTwoOmdbInteractive.js loop method?
 
 // tell liri what to do
 switch (command) {
@@ -62,6 +66,11 @@ switch (command) {
         console.log("look up concerts");
         break;
     case "spotify-this-song":
+        // song search defaults to "The Sign"
+        if (args === "") {
+            var args = "the sign ace of base"
+        };
+
         // this way was giving me problems, saving to investigate later
         // console.log("search a song");
         // spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
@@ -71,11 +80,13 @@ switch (command) {
            
         //   console.log(data.items); 
         // });
+
         spotify
-        .search({ type: 'track', query: args, limit: 1})
-        .then((resp) => {
-            var resp = resp.tracks.items[0]; //unpacked here
-            // do the things here
+            .search({ type: 'track', query: args, limit: 1})
+            .then((resp) => {
+             //unpack response
+            var resp = resp.tracks.items[0];
+            // required information
             // console.log(resp);
             var artistsResp = resp.artists[0].name;
             console.log("Preformed by " + artistsResp);
@@ -84,10 +95,10 @@ switch (command) {
             var urlResp = resp.external_urls.spotify;
             console.log("Listen to the song HERE: " + urlResp);
             var albumResp = resp.album.name;
-            console.log("Off of the album " + albumResp);
-        })
+            console.log("Off of the album, " + albumResp);
+            })
         .catch((err) => {
-            console.log("Liri can't find that song!");
+            console.log("I havent heard of that one :(");
         });
         break;
     case "movie-this":
