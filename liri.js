@@ -12,6 +12,8 @@ var keys = require("./keys.js");
 var fs = require("fs");
 // access your keys information
 var spotify = new Spotify(keys.spotify);
+// moment
+var moment = require("moment")
 //checking to see files are communicating
 // console.log(spotify); 
 
@@ -63,7 +65,18 @@ for (var i = 0; i < commandArgs.length; i++) {
 // tell liri what to do
 switch (command) {
     case "concert-this":
-        console.log("look up concerts");
+        // console.log("look up concerts");
+
+        axios.get("https://rest.bandsintown.com/artists/" + args + "/events?app_id=codingbootcamp").then(function(response) {
+
+
+            // var to format w/ Moment JS
+            var date = moment(response.data[0].datetime).format('MM/DD/YYYY')
+            console.log("Go see " + response.data[0].venue.name + " @ in " + response.data[0].venue.city + " on " + date + "!");
+            console.log(response.data[0]);
+        }
+        )
+
         break;
     case "spotify-this-song":
         // song search defaults to "The Sign"
