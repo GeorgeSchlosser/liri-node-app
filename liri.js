@@ -102,26 +102,27 @@ switch (command) {
         });
         break;
     case "movie-this":
-        console.log("search a movie");
+        // console.log("search a movie");
         axios.get("http://www.omdbapi.com/?t="+args+"&y=&plot=short&apikey=trilogy").then(
         function(response) {
             // log data to ensure axios is working
-            console.log(response.data);
+            // console.log(response.data);
             // title
-
+            console.log("Movie Title: " + response.data.Title);
             // release year
-
+            console.log("Year Released: " + response.data.Year);
             // imdb rating
-
-            // RT rating
-
+            console.log("IMDB Rating: " + response.data.Ratings[0].Value);
+            // RT rating, what to do if rating isn't present ex: tromeo and juliet
+            console.log("Rotten Tomatoes Critic Score: " + response.data.Ratings[1].Value);
             // Country produced in
-
+            console.log("Country Produced In: " + response.data.Country);
             // Language
-
+            console.log("Language(s): " + response.data.Language);
             // plot
-
+            console.log("Plot Summary: " + response.data.Plot);
             // actors
+            console.log("Cast: " + response.data.Actors);
         }
         );
         break;
