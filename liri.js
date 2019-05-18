@@ -103,6 +103,27 @@ switch (command) {
         break;
     case "movie-this":
         console.log("search a movie");
+        axios.get("http://www.omdbapi.com/?t="+args+"&y=&plot=short&apikey=trilogy").then(
+        function(response) {
+            // log data to ensure axios is working
+            console.log(response.data);
+            // title
+
+            // release year
+
+            // imdb rating
+
+            // RT rating
+
+            // Country produced in
+
+            // Language
+
+            // plot
+
+            // actors
+        }
+        );
         break;
     case "do-what-it-says":
         // console.log(random);
