@@ -14,25 +14,16 @@ var fs = require("fs");
 var spotify = new Spotify(keys.spotify);
 // moment
 var moment = require("moment")
-//checking to see files are communicating
-// console.log(spotify); 
-
-// PACKAGE FUNCTIONS
-// ================================================================================
-
-
+ 
 // CLI FUNCTIONS
 // ================================================================================
 // take in first command line argument
 var commandInput = process.argv.slice(2, 3);
-// console.log(commandInput);
+
 
 // variable to take value w/n commandInput out of its array
 var command = commandInput[0];
 // console.log(command);
-
-// empty variable to hold artist/song/movie to search
-// var searchItem = "";
 
 // variable containing arguments for searchterms
 var commandArgs = process.argv.slice(3);
@@ -42,10 +33,6 @@ var commandArgs = process.argv.slice(3);
 // empty variable for holding arguments
 var args = "";
 
-// song search defaults to "The Sign"
-// if (command === "spotif-this-song" && args === "") {
-//     let args = "the sign"
-// };
 
 // loop through all words in commandArgs & concatinate into a searchable string w/ spaces
 for (var i = 0; i < commandArgs.length; i++) {
@@ -62,21 +49,22 @@ for (var i = 0; i < commandArgs.length; i++) {
 // console.log(args);
 
 
-// tell liri what to do
+//liri commands & functions
+// future goal: modularize
 switch (command) {
     case "concert-this":
-        // console.log("look up concerts");
 
         axios.get("https://rest.bandsintown.com/artists/" + args + "/events?app_id=codingbootcamp").then(function(response) {
 
 
             // var to format w/ Moment JS
+            // console.log(response.data[0])
             var date = moment(response.data[0].datetime).format('MM/DD/YYYY')
-            console.log("Go see " + response.data[0].venue.name + " @ in " + response.data[0].venue.city + " on " + date + "!");
-            console.log(response.data[0]);
-        }
-        )
-
+            console.log("Go see " + response.data[0].lineup[0]+ " at " + response.data[0].venue.name + " in " + response.data[0].venue.city + " on " + date + "!");
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
         break;
     case "spotify-this-song":
         // song search defaults to "The Sign"
@@ -100,7 +88,6 @@ switch (command) {
              //unpack response
             var resp = resp.tracks.items[0];
             // required information
-            // console.log(resp);
             var artistsResp = resp.artists[0].name;
             console.log("Preformed by " + artistsResp);
             var songResp = resp.name;
@@ -115,7 +102,6 @@ switch (command) {
             });
         break;
     case "movie-this":
-        // console.log("search a movie");
          // defaults to Mr. Nobody
         if (args === "") {
             var args = "mr nobody"
@@ -123,8 +109,7 @@ switch (command) {
         
         axios.get("http://www.omdbapi.com/?t="+args+"&y=&plot=short&apikey=trilogy").then(
         function(response) {
-            // log data to ensure axios is working
-            // console.log(response.data);
+            
             // title
             console.log("Movie Title: " + response.data.Title);
             // release year
@@ -141,17 +126,38 @@ switch (command) {
             console.log("Plot Summary: " + response.data.Plot);
             // actors
             console.log("Cast: " + response.data.Actors);
-        }
-        );
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
         break;
     case "do-what-it-says":
         // console.log(random);
         fs.readFile("random.txt", "utf8", function(error, data) {
 
-            // If the code experiences any errors it will log the error to the console.
             if (error) {
               return console.log(error);
             }
+
+            var randArr = data.split(",");
+            
+            spotify.search({ type: 'track', query: randArr[1], limit: 1})
+
+            .then((resp) => {
+                //unpack response
+               var resp = resp.tracks.items[0];
+               // required information
+               var artistsResp = resp.artists[0].name;
+               console.log("Preformed by " + artistsResp);
+               var songResp = resp.name;
+               console.log("'" + songResp + "'");
+               var urlResp = resp.external_urls.spotify;
+               console.log("Listen to the song HERE: " + urlResp);
+               var albumResp = resp.album.name;
+               console.log("Off of the album, " + albumResp);
+               })
+
+
           
             // We will then print the contents of data
             console.log(data);
