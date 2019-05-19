@@ -18,7 +18,7 @@ https://github.com/GeorgeSchlosser/liri-node-app
  ## Install & Create Files
  In order to use LIRI you will need certain files to get it working.
 
- 1. Clone/download the repository for the following github page: https://github.com/GeorgeSchlosser/liri-node-app.
+ 1. Clone/download the repository from the above link.
  2. Create a .gitignore file and add the following file names:
     ```
     node_modules
@@ -33,9 +33,9 @@ https://github.com/GeorgeSchlosser/liri-node-app
         secret: process.env.SPOTIFY_SECRET
     };
     ```
-4. YThe [node-spotify-api](https://www.npmjs.com/package/node-spotify-api) package is needed to retrieve song information from the Spotify API.
+4. The [node-spotify-api](https://www.npmjs.com/package/node-spotify-api) package is needed to retrieve song information from the Spotify API.
 
-   * The Spotify API requires you to sign up as a developer to generate the necessary credentials. You can follow these steps in order to generate a **client id** and **client secret**:
+* The Spotify API requires you to sign up as a developer to generate the necessary credentials. You can follow these steps in order to generate a **client id** and **client secret**:
 
     * Step One: Visit <https://developer.spotify.com/my-applications/#!/>
 
@@ -55,7 +55,7 @@ Theoretically, LIRI is ready to go!
 
 ## Using the App
 
-You can watch a demo of the application here: https://drive.google.com/file/d/1UbouArFy36TPcbJ5cSQLf5R0soHEaowv/view?usp=sharing
+You can watch a demo of the application here: https://www.youtube.com/watch?v=nWTs4KKC39I
 
 With LIRI you can search information about artists, concerts, movies, and a hidden surprise!
 
